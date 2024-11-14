@@ -148,8 +148,3 @@ def leave_game(game_id, prop):
         del games[game_id]
     leave_room(game_id)
     emit("leave_game", to=request.sid)
-
-
-
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
