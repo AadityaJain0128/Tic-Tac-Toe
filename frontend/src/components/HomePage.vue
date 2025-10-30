@@ -64,14 +64,14 @@ export default {
     }
   },
   created() {
-    this.socket = io("http://192.168.113.138:5000");
+    this.socket = io(process.env.VUE_APP_BACKEND_URL);
     document.title = "Home - Tic Tac Toe";
-
+  
     this.name = localStorage.getItem("name") || "";
     this.game_id = localStorage.getItem("game_id") || "";
     this.prop = localStorage.getItem("prop") || "";
     this.reload_game()
-
+  
     this.socket.on("game_id", (data) => {
       if (data.game_id.length != 4) {
         return;
@@ -85,7 +85,7 @@ export default {
       localStorage.setItem("game_id", this.game_id);
       localStorage.setItem("prop", this.prop);
     });
-
+  
     this.socket.on("leave_game", () => {
       localStorage.setItem("game_id", "");
       this.game_id = "";
@@ -93,6 +93,7 @@ export default {
       this.name_form = true;
     })
   }
+
 }
 </script>
 
